@@ -1,28 +1,15 @@
-import os
-import json
 import time
-import base64
 import requests
-import boto3
-import openpyxl
 import logging
-from io import BytesIO
 from fastapi import FastAPI, HTTPException
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Environment configuration
-base_url = os.environ.get("BASE_URL", "https://qfhtiiep7dmkfhnzcfh7lqmdou0snrhg.lambda-url.us-west-2.on.aws/")
+base_url = "https://qfhtiiep7dmkfhnzcfh7lqmdou0snrhg.lambda-url.us-west-2.on.aws/"
 base_url_sql_server = "https://5js3bnz5dpjhznip3gkyeruylu0isazh.lambda-url.us-west-2.on.aws/"
 completeBaseUrl = "https://jcfx3zhzo7nzt5ez4prlkvv2ky0inwaj.lambda-url.us-west-2.on.aws/"
-S3_BUCKET_NAME = os.environ.get("S3_BUCKET_NAME", "generated-excel-rateshopreports")
-S3_REGION = os.environ.get("S3_REGION", "us-west-2")
-S3_BUCKET_FOLDER = os.environ.get("S3_BUCKET_FOLDER", "prod")
 
-# Initialize the S3 client
-s3 = boto3.client('s3', region_name=S3_REGION)
 
 app = FastAPI()
 
